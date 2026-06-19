@@ -135,6 +135,8 @@ GitHub Actions is the key element here in automation. Every single time you push
 ## Pipelines
 
 <img width="1432" height="541" alt="Screenshot 2026-06-15 at 20 52 26" src="https://github.com/user-attachments/assets/9f9eca92-df15-453b-8f62-6617efd82dbf" />
+<img width="1106" height="566" alt="Screenshot 2026-06-19 at 16 12 39" src="https://github.com/user-attachments/assets/7d2bd495-e206-4769-9996-dd130ae53b2d" />
+
 The CI/CD pipeline succesfully showing it's passed all it's deployments; Build and Push to ECR, Terraform Deploy, Terraform Destroy
 
 
