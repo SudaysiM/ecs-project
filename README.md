@@ -8,11 +8,11 @@ This project deploys a containerised Flask application on AWS ECS Fargate, acces
 
 A production-grade containerised application deployed on AWS ECS Fargate using Terraform modules, GitHub Actions CI/CD, and HTTPS on a custom domain.
 
-Why Do Engineers/Companies Use This?
+## Why Do Engineers/Companies Use This?
 
 Manually clicking through AWS consoles is deemed inefficient and it only takes one engineer in a team to make one mistake that can take down the whole production. Infrastructure as code means that every change will be reviewed, version controlled and most importantly it'll be reproducible which saves a lot of time. Using ECS Fargate means you don't personally manage any servers which allows you to type "run my container" and AWS will handle all the work. This is more efficient as it reduces the amount of code you would have to fix and monitor.
 
-## Request Command
+## Request Flow
 
 User Browser (HTTPS)
 
@@ -63,6 +63,33 @@ User Browser (HTTPS)
   ────────────────
   This is the process of what happens when you request the domain.
 
+## Project Structure
+
+```
+.
+├── app/
+│   ├── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
+├── infra/
+│   ├── main.tf
+│   ├── provider.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── modules/
+│       ├── vpc/
+│       ├── ecs/
+│       ├── alb/
+│       ├── ecr/
+│       └── acm/
+├── .github/
+│   └── workflows/
+│       ├── app.yml
+│       ├── terraform-deploy.yml
+│       └── terraform-destroy.yml
+└── README.md
+```
+
 ## Architecture
 
 ```mermaid
@@ -79,14 +106,14 @@ graph TD
         end
     end
 ```
-## Technology Stack
-
-Cloud | AWS (ECS Fargate, ALB, VPC, Route53, ACM, ECR) |
-IaC | Terraform with modules |
-CI/CD | GitHub Actions with OIDC |
-Application | Python Flask, Docker |
-DNS | Namecheap → Route53 |
-Region | eu-west-2 (London) |
+| Category | Technology |
+|----------|-----------|
+| Cloud | AWS (ECS Fargate, ALB, VPC, Route53, ACM, ECR) |
+| IaC | Terraform with modules |
+| CI/CD | GitHub Actions with OIDC |
+| Application | Python Flask, Docker |
+| DNS | Namecheap → Route53 |
+| Region | eu-west-2 (London) |
 
 ## Local Setup
 
@@ -144,6 +171,7 @@ The CI/CD pipeline succesfully showing it's passed all it's deployments; Build a
 - Terraform Deploy — triggers on changes to infra/
 - Terraform Destroy — manual trigger only
 
+## App Demo
 
 <img width="1440" height="900" alt="Screenshot 2026-06-15 at 20 49 36" src="https://github.com/user-attachments/assets/229727f7-fd4d-4168-b522-043b7d094594" />
 Succesful image of my app running
